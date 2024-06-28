@@ -457,7 +457,7 @@
 
 
 
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script>
         var isDesplegarInformacionUsuario = true; // Variable to track the current function
         var isDesplegarInformacionUsuarioAllUsers = true;

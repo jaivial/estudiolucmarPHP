@@ -1274,7 +1274,7 @@
                             },
                             onClick: function() {} // Callback after click
                         }).showToast();
-
+                        fetchData(direccion, currentPage);
                         fetchMoreInfo();
                         plegarNoticias();
                         console.log("Todo salio bien");
@@ -1346,7 +1346,7 @@
                         },
                         onClick: function() {} // Callback after click
                     }).showToast();
-
+                    fetchData(direccion, currentPage);
                     toggleDesplegarEncargos();
                     hideLoadingScreenMoreInfo();
                     fetchMoreInfo();
@@ -1694,6 +1694,7 @@
                     },
                     onClick: function() {} // Callback after click
                 }).showToast();
+                fetchData(direccion, currentPage);
                 plegarNoticias();
                 fetchMoreInfo();
             })
@@ -1726,7 +1727,7 @@
                 },
                 onClick: function() {} // Callback after click
             }).showToast();
-            console.log("Encargo eliminado correctamente");
+            fetchData(direccion, currentPage);
             fetchMoreInfo();
         })
         .catch(function(error) {

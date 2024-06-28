@@ -12,6 +12,9 @@ $fecha = $_GET['fecha'];
 $prioridad = $_GET['prioridad'];
 $comercial = $_GET['comercial'];
 
+if ($valoracionText == '') {
+    $valoracionText = null;
+}
 // Begin transaction
 $conn->begin_transaction();
 

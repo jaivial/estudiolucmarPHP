@@ -29,18 +29,13 @@
 
                 <div id="moreMobileMenu" class="h-auto pt-3.5 px-3.5 rounded-3xl flex flex-col items-center justify-center">
                     <ul class="w-auto h-full flex flex-col justify-between gap-6">
-                        <li id="mobile-itemBuscador" onclick="changeState('mobile-itemBuscador')" class="hidden h-[45px] bg-white p-2 px-3.5 rounded-3xl shadow-lg items-center justify-center hover:cursor-pointer hover:bg-blue-400 hover:text-white inset-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 14 14">
-                                <path fill="currentColor" fill-rule="evenodd" d="M2 6a4 4 0 1 1 8 0a4 4 0 0 1-8 0m4-6a6 6 0 1 0 3.476 10.89l2.817 2.817a1 1 0 0 0 1.414-1.414l-2.816-2.816A6 6 0 0 0 6 0" clip-rule="evenodd" />
-                            </svg>
-                        </li>
-                        <li id="mobile-itemNoticias" onclick="changeState('mobile-itemNoticias')" class="h-[45px] bg-white p-2 px-3.5 rounded-3xl shadow-lg hidden items-center justify-center hover:cursor-pointer hover:bg-blue-400 hover:text-white">
+                        <li id="mobile-itemEncargos" onclick="changeState('mobile-itemEncargos')" class="h-[45px] bg-white p-2 px-3.5 rounded-3xl shadow-lg hidden items-center justify-center hover:cursor-pointer hover:bg-blue-400 hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 20 20">
                                 <path fill="currentColor" d="M2 3a1 1 0 0 1 2 0h13a1 1 0 1 1 0 2H4v12.5a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 5 13.5zm3 7a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-2.55a1 1 0 0 0-.336-.748L11.332 8.13a.5.5 0 0 0-.664 0L8.336 10.2a1 1 0 0 0-.336.75z" />
                             </svg>
                         </li>
                        
-                        <li id="mobile-itemEncargos" onclick="changeState('mobile-itemEncargos')" class="hidden h-[45px] bg-white p-2 px-3.5 rounded-3xl shadow-lg items-center justify-center hover:cursor-pointer hover:bg-blue-400 hover:text-white">
+                        <li id="mobile-itemNoticias" onclick="changeState('mobile-itemNoticias')" class="hidden h-[45px] bg-white p-2 px-3.5 rounded-3xl shadow-lg items-center justify-center hover:cursor-pointer hover:bg-blue-400 hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 24 24">
                                 <path fill="currentColor" d="M10 6h4V4h-4zm8 17q-2.075 0-3.537-1.463T13 18t1.463-3.537T18 13t3.538 1.463T23 18t-1.463 3.538T18 23M4 21q-.825 0-1.412-.587T2 19V8q0-.825.588-1.412T4 6h4V4q0-.825.588-1.412T10 2h4q.825 0 1.413.588T16 4v2h4q.825 0 1.413.588T22 8v2.9q0 .45-.387.675t-.813.025q-.65-.3-1.362-.45T18 11q-2.9 0-4.95 2.05T11 18q0 .45.063.913t.187.912q.125.425-.137.8t-.688.375zm14 0q.2 0 .35-.15t.15-.35t-.15-.35T18 20t-.35.15t-.15.35t.15.35t.35.15m0-2q.2 0 .35-.15t.15-.35v-3q0-.2-.15-.35T18 15t-.35.15t-.15.35v3q0 .2.15.35T18 19" />
                             </svg>
@@ -53,7 +48,7 @@
                         <li id="mobile-itemLogOut" onclick="logOut()" class="h-[45px] bg-white p-2  px-3.5 rounded-3xl shadow-lg hidden items-center justify-center hover:cursor-pointer hover:bg-blue-400 hover:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4m-5-4l5-5l-5-5m5 5H3"/></svg>
                         </li>
-                        <li id="mobile-MoreMenuIcon" class="h-[45px] bg-white p-2  px-3.5 rounded-3xl shadow-lg flex items-center justify-center hover:cursor-pointer hover:bg-blue-400 hover:text-white">
+                        <li id="mobile-itemMoreMenuIcon" class="h-[45px] bg-white p-2  px-3.5 rounded-3xl shadow-lg flex items-center justify-center hover:cursor-pointer hover:bg-blue-400 hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.8em" height="1.8em" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2 18c0-1.54 0-2.31.347-2.876c.194-.317.46-.583.777-.777C3.689 14 4.46 14 6 14s2.31 0 2.876.347c.317.194.583.46.777.777C10 15.689 10 16.46 10 18s0 2.31-.347 2.877c-.194.316-.46.582-.777.776C8.311 22 7.54 22 6 22s-2.31 0-2.876-.347a2.35 2.35 0 0 1-.777-.776C2 20.31 2 19.54 2 18m12 0c0-1.54 0-2.31.347-2.876c.194-.317.46-.583.777-.777C15.689 14 16.46 14 18 14s2.31 0 2.877.347c.316.194.582.46.776.777C22 15.689 22 16.46 22 18s0 2.31-.347 2.877a2.36 2.36 0 0 1-.776.776C20.31 22 19.54 22 18 22s-2.31 0-2.876-.347a2.35 2.35 0 0 1-.777-.776C14 20.31 14 19.54 14 18M2 6c0-1.54 0-2.31.347-2.876c.194-.317.46-.583.777-.777C3.689 2 4.46 2 6 2s2.31 0 2.876.347c.317.194.583.46.777.777C10 3.689 10 4.46 10 6s0 2.31-.347 2.876c-.194.317-.46.583-.777.777C8.311 10 7.54 10 6 10s-2.31 0-2.876-.347a2.35 2.35 0 0 1-.777-.777C2 8.311 2 7.54 2 6m12 0c0-1.54 0-2.31.347-2.876c.194-.317.46-.583.777-.777C15.689 2 16.46 2 18 2s2.31 0 2.877.347c.316.194.582.46.776.777C22 3.689 22 4.46 22 6s0 2.31-.347 2.876c-.194.317-.46.583-.776.777C20.31 10 19.54 10 18 10s-2.31 0-2.876-.347a2.35 2.35 0 0 1-.777-.777C14 8.311 14 7.54 14 6" color="currentColor" />
                             </svg>
@@ -75,9 +70,9 @@
         isDesplegarMoreMenu = true;
 
         function showMoreMenu() {
-            document.getElementById('mobile-MoreMenuIcon').classList.remove('bg-white');
-            document.getElementById('mobile-MoreMenuIcon').classList.add('bg-blue-400');
-            document.getElementById('mobile-MoreMenuIcon').classList.add('text-white');
+            document.getElementById('mobile-itemMoreMenuIcon').classList.remove('bg-white');
+            document.getElementById('mobile-itemMoreMenuIcon').classList.add('bg-blue-400');
+            document.getElementById('mobile-itemMoreMenuIcon').classList.add('text-white');
             document.getElementById('mobile-itemSettings').classList.remove('hidden');
             document.getElementById('mobile-itemEncargos').classList.remove('hidden');
             document.getElementById('mobile-itemNoticias').classList.remove('hidden');
@@ -91,8 +86,8 @@
             document.getElementById('mobile-itemEncargos').classList.add('hidden');
             document.getElementById('mobile-itemNoticias').classList.add('hidden');
             document.getElementById('mobile-itemLogOut').classList.add('hidden');
-            document.getElementById('mobile-MoreMenuIcon').classList.remove('bg-blue-400', 'text-white');
-            document.getElementById('mobile-MoreMenuIcon').classList.add('bg-white');
+            document.getElementById('mobile-itemMoreMenuIcon').classList.remove('bg-blue-400', 'text-white');
+            document.getElementById('mobile-itemMoreMenuIcon').classList.add('bg-white');
             document.getElementById('moreMobileMenu').classList.remove('shadow-lg', 'bg-blue-400', 'bg-opacity-30');
         }
 
@@ -144,84 +139,35 @@
                 }
             });
 
-            // To change the active state of the list items
-            const listItemHome = document.getElementById("list-itemHome");
-            if (window.location.pathname === "/lucmarcloud") {
-                listItemHome.classList.add("bg-gradient-to-tr", "from-indigo-200", "to-indigo-100", "text-indigo-800", "hover:bg-red-800");
-                listItemHome.classList.remove("hover:bg-indigo-200");
-            }
-
-            const listItemSearch = document.getElementById("list-itemSearch");
-            if (window.location.pathname === "/buscador") {
-                listItemSearch.classList.add("bg-gradient-to-tr", "from-indigo-200", "to-indigo-100", "text-indigo-800", "hover:bg-red-800");
-                listItemSearch.classList.remove("hover:bg-indigo-200");
-            }
 
             console.log(window.location.pathname);
         });
 
         function changeState(activeId) {
-            const items = document.querySelectorAll('nav ul li');
-
-            items.forEach(item => {
-                if (item.id === activeId) {
-                    item.classList.remove('h-[45px]', 'bg-white', 'p-2', 'text-black');
-                    item.classList.add('h-[55px]', 'bg-blue-400', 'p-2.5', 'text-white');
-                } else {
-                    item.classList.remove('h-[55px]', 'bg-blue-400', 'p-2.5', 'text-white');
-                    item.classList.add('h-[45px]', 'bg-white', 'p-2', 'text-black');
-                }
-            });
             const home = document.getElementById('home');
             const buscadordeinmuebles = document.getElementById('buscadordeinmuebles');
             const buscadorDeEncargos = document.getElementById('buscadordeencargos');
             // Show or hide corresponding div elements based on activeId
             if (activeId === 'mobile-itemHome') {
-                document.getElementById('home').classList.remove('hidden');
-                document.getElementById('home').classList.add('block');
-                document.getElementById('buscadordeinmuebles').classList.remove('block');
-                document.getElementById('buscadordeinmuebles').classList.add('hidden');
-                document.getElementById('settings').classList.remove('block');
-                document.getElementById('settings').classList.add('hidden');
-                document.getElementById('buscadordeencargos').classList.remove('block');
-                document.getElementById('buscadordeencargos').classList.add('hidden');
                 if (!isDesplegarMoreMenu) {
                     hideMoreMenu();
                     isDesplegarMoreMenu = true;
                 }
+                window.location.href = "lucmarcloud.php";
             } else if (activeId === 'mobile-itemBuscador') {
-                document.getElementById('home').classList.remove('block');
-                document.getElementById('home').classList.add('hidden');
-                document.getElementById('buscadordeinmuebles').classList.remove('hidden');
-                document.getElementById('buscadordeinmuebles').classList.add('block');
-                document.getElementById('settings').classList.remove('block');
-                document.getElementById('settings').classList.add('hidden');
-                document.getElementById('buscadordeencargos').classList.remove('block');
-                document.getElementById('buscadordeencargos').classList.add('hidden');
                 if (!isDesplegarMoreMenu) {
                     hideMoreMenu();
                     isDesplegarMoreMenu = true;
                 }
+                window.location.href = "pagebuscadordeinmuebles.php";
             } else if (activeId === 'mobile-itemSettings') {
-                document.getElementById('settings').classList.remove('hidden');
-                document.getElementById('settings').classList.add('block');
-                document.getElementById('buscadordeinmuebles').classList.remove('block');
-                document.getElementById('buscadordeinmuebles').classList.add('hidden');
-                document.getElementById('home').classList.remove('block');
-                document.getElementById('home').classList.add('hidden');
-                document.getElementById('buscadordeencargos').classList.remove('block');
-                document.getElementById('buscadordeencargos').classList.add('hidden');
+                window.location.href = "pagesettings.php";
             } else if (activeId === 'mobile-itemEncargos') {
-                document.getElementById('buscadordeencargos').classList.remove('hidden');
-                document.getElementById('buscadordeencargos').classList.add('block');
-                document.getElementById('buscadordeinmuebles').classList.remove('block');
-                document.getElementById('buscadordeinmuebles').classList.add('hidden');
-                document.getElementById('home').classList.remove('block');
-                document.getElementById('home').classList.add('hidden');
-                document.getElementById('settings').classList.remove('block');
-                document.getElementById('settings').classList.add('hidden');
+                window.location.href = "pagebuscadordeencargos.php";
             } else if (activeId === 'mobile-itemLogOut') {
                 window.location.href = "index.php";
+            } else if (activeId === 'mobile-itemNoticias') {
+                window.location.href = "pagebuscadordenoticias.php";
             }
 
             console.log(activeId);

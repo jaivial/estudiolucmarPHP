@@ -14,7 +14,7 @@ if (!isset($_COOKIE['usuario']) && !isset($_COOKIE['password'])) {
     if ($user) {
         echo "<script>console.log('User is authenticated');</script>";
     } else {
-        header('Location: index.php');
+       header('Location: index.php');
     }
 }
 ?>
@@ -27,7 +27,6 @@ if (!isset($_COOKIE['usuario']) && !isset($_COOKIE['password'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>LucmarCloud</title>
     <link href="./output.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body class="overflow-x-hidden bg-slate-200">
@@ -43,47 +42,28 @@ if (!isset($_COOKIE['usuario']) && !isset($_COOKIE['password'])) {
             include 'mobilesidenavbar.php';
             ?>
         </div>
-        <div id="home" class="lg:ml-52 w-[100%] h-auto bg-slate-200 overflow-y-hidden">
+        <div id="buscadorDeEncargos" class=" lg:ml-52 w-[100%] h-auto bg-slate-200 overflow-y-auto">
             <?php
-            include 'home.php';
+            include 'buscadordeencargos.php';
             ?>
         </div>
     </main>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <script>
-        Toastify({
-            text: "Sesión iniciada",
-            duration: 2500,
-            destination: "https://github.com/apvarun/toastify-js",
-            newWindow: true,
-            close: false,
-            gravity: "top", // `top` or `bottom`
-            position: "center", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-            style: {
-                borderRadius: "10px",
-                backgroundImage: "background-image: linear-gradient(to bottom right, var(--tw-gradient-stops))",
-                backgroundColor: "#34D399",
-                backgroundColor: "#047857",
-            },
-            onClick: function() {} // Callback after click
-        }).showToast();
-        const mobileItemBuscador = document.getElementById("mobile-itemHome");
-
-        // Function to update the visibility based on localStorage
-        function updateVisibility() {
+       const mobileItemEncargos = document.getElementById("mobile-itemEncargos");
+       function updateVisibility() {
             document.querySelectorAll('[id*="mobile-item"]').forEach(function(element) {
                 element.classList.remove('h-[55px]', 'bg-blue-400', 'p-2.5', 'text-white');
                 element.classList.add('h-[45px]', 'bg-white', 'p-2', 'text-black');
             });
-            mobileItemBuscador.classList.remove('h-[45px]', 'bg-white', 'p-2', 'text-black');
-            mobileItemBuscador.classList.add('h-[55px]', 'bg-blue-400', 'p-2.5', 'text-white');
+            mobileItemEncargos.classList.remove('h-[45px]', 'bg-white', 'p-2', 'text-black');
+            mobileItemEncargos.classList.add('h-[55px]', 'bg-blue-400', 'p-2.5', 'text-white');
         }
 
         // Initial check
         updateVisibility();
     </script>
+
 </body>
 
 

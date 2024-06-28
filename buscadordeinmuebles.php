@@ -78,7 +78,7 @@
 
         </div>
     </div>
-    <div id="more-info-container" class="hidden fixed top-1 left-1/2 -translate-x-1/2 items-center justify-start bg-gray-100 overflow-y-auto opacity-100 z-20 w-[95%] h-[calc(100%-3.5rem)] rounded-2xl shadow-xl overflow-auto px-4 pt-14 mb-3 pb-8">
+    <div id="more-info-container" class="hidden fixed top-0 left-1/2 -translate-x-1/2 items-center justify-start bg-gray-100 overflow-y-auto opacity-100 z-20 w-[100%] h-[calc(100%-2rem)] shadow-xl overflow-auto px-4 pt-14 mb-3 pb-8">
         <?php
         include 'moreinfo.php';
         ?>
@@ -86,33 +86,11 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            showLoadingScreenMoreInfo();
-            showLoadingScreen();
+        showLoadingScreenMoreInfo();
+        showLoadingScreen();
 
-            const searchForm = document.getElementById('search-form');
-            const tableBody = document.getElementById('search-data');
-            let direccion = '';
-
-            const prevButton = document.getElementById('prev-button');
-            const nextButton = document.getElementById('next-button');
-            const pageInfo = document.getElementById('page-info');
-
-            const clearForm = document.getElementById('clear-form');
-
-            let currentPage = 1;
-            let totalPages = 1;
-            const itemsPerPage = 20;
-
-            // Automatically fetch data when the document is loaded
-            fetchData(direccion, currentPage);
-
-            function hideLoadingScreen() {
-                const loadingScreen = document.getElementById('loading-screen');
-                loadingScreen.classList.add('hidden');
-            }
-
-            searchForm.addEventListener('submit', function(event) {
+        const searchForm = document.getElementById('search-form');
+        searchForm.addEventListener('submit', function(event) {
                 event.preventDefault();
                 const formData = new FormData(this);
                 direccion = formData.get('direccion');
@@ -138,157 +116,171 @@
                 fetchData(direccion, currentPage);
             });
 
-            prevButton.addEventListener('click', function() {
-                if (currentPage > 1) {
-                    currentPage--;
-                    fetchData(direccion, currentPage);
-                }
-            });
 
-            nextButton.addEventListener('click', function() {
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    fetchData(direccion, currentPage);
-                }
-            });
+        const tableBody = document.getElementById('search-data');
+        let direccion = '';
 
-            clearForm.addEventListener('click', function() {
-                document.getElementById("search-form").reset();
-                direccion = '';
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const pageInfo = document.getElementById('page-info');
+
+        const clearForm = document.getElementById('clear-form');
+
+        let currentPage = 1;
+        let totalPages = 1;
+        const itemsPerPage = 20;
+
+        // Automatically fetch data when the document is loaded
+        fetchData(direccion, currentPage);
+
+        function hideLoadingScreen() {
+            const loadingScreen = document.getElementById('loading-screen');
+            loadingScreen.classList.add('hidden');
+        }
+
+
+        prevButton.addEventListener('click', function() {
+            if (currentPage > 1) {
+                currentPage--;
                 fetchData(direccion, currentPage);
-            });
-
-
-
-            function fetchData(direccion, page) {
-                fetch(`tabla.php?itemsPerPage=${itemsPerPage}&direccion=${direccion}&page=${page}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        totalPages = Math.ceil(data.totalItems / itemsPerPage);
-                        displayData(data.data);
-                        updatePaginationInfo();
-                    })
-                    .catch(error => console.error('Error fetching JSON data:', error));
             }
-
-            function displayData(data) {
-                // Clear existing rows
-                tableBody.innerHTML = '';
-
-                // Populate table with data
-                data.forEach(item => {
-                    const row = document.createElement('tr');
-                    row.classList.add('border-b', 'border-zinc-300');
-                    row.id = 'row-' + item.id;
-                    // Create a new row element
-
-                    // Function to create a td element with given classes and inner HTML
-                    function createCell(classes, innerHTML) {
-                        const cell = document.createElement('td');
-                        cell.className = classes;
-                        cell.innerHTML = innerHTML;
-                        return cell;
-                    }
-
-                    // Append cells to the row
-                    row.appendChild(createCell('text-center xl:text-start py-5 text-sm overflow-hidden w-[100%]', item.direccion));
-                    row.appendChild(createCell('hidden xl:table-cell', item.tipo));
-                    row.appendChild(createCell('hidden xl:table-cell', item.uso));
-                    row.appendChild(createCell('hidden xl:table-cell', item.superficie));
-                    row.appendChild(createCell('hidden xl:table-cell', item.ano_construccion));
-
-                    // Create the cell with SVG icons
-                    const svgCell = document.createElement('td');
-                    svgCell.className = 'xl:table-cell';
-                    const svgDiv = document.createElement('div');
-                    svgDiv.className = 'flex flex-row px-1 w-full h-full gap-2 justify-start items-center';
-
-                    const noticiaSvg = `<svg id="noticia-table-cell${item.id}" class="text-red-700 hidden" xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 20 20"><path fill="currentColor" d="M2.93 17.07A10 10 0 1 1 17.07 2.93A10 10 0 0 1 2.93 17.07M9 5v6h2V5zm0 8v2h2v-2z" /></svg>`;
-                    const encargoSvg = `<svg id="encargo-table-cell${item.id}" class="text-red-700 hidden" xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 20 20"><path fill="currentColor" d="M2 3a1 1 0 0 1 2 0h13a1 1 0 1 1 0 2H4v12.5a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 5 13.5zm3 7a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-2.55a1 1 0 0 0-.336-.748L11.332 8.13a.5.5 0 0 0-.664 0L8.336 10.2a1 1 0 0 0-.336.75z" /></svg>`;
-
-                    svgDiv.innerHTML = noticiaSvg + encargoSvg;
-                    svgCell.appendChild(svgDiv);
-                    row.appendChild(svgCell);
-
-                    // Create the cell with the button
-                    const buttonCell = document.createElement('td');
-                    buttonCell.className = 'relative';
-                    const containerButtonDiv = document.createElement('div');
-                    containerButtonDiv.classList = "w-auto absolute top-1/2 -translate-y-1/2 right-3 xl:table-cell";
-                    const buttonDiv = document.createElement('div');
-                    buttonDiv.id = item.id;
-                    buttonDiv.className = 'bg-slate-500 hover:bg-slate-900 w-[2em] h-[2em] rounded-lg flex flex-col items-center justify-center hover:rounded-3xl transition-all duration-[0.5s] ease-in-out hover:w-11 hover:h-11 overflow-hidden hover:cursor-pointer';
-                    buttonDiv.onclick = function() {
-                        verMasInfo(this);
-                    };
-                    const buttonSvg = `<svg class="p-2" id="more-info-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#63E6BE" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>`;
-                    buttonDiv.innerHTML = buttonSvg;
-                    containerButtonDiv.appendChild(buttonDiv);
-                    buttonCell.appendChild(containerButtonDiv);
-                    row.appendChild(buttonCell);
-
-
-
-                    tableBody.appendChild(row);
-
-
-
-                    axios.get(`inmueblemoreinfo.php?id=${item.id}`)
-                        .then(response => {
-                            console.log(response.data.dataUpdateTime);
-                            const row = document.getElementById('row-' + item.id);
-
-                            if (response.data.inmueble.encargoState === 1) {
-                                const noticiatablecell = document.getElementById('encargo-table-cell' + item.id);
-                                noticiatablecell.classList.remove('hidden');
-                            } else if (response.data.inmueble.encargoState === 0 || response.data.inmueble.encargoState === null) {
-                                const noticiatablecell = document.getElementById('encargo-table-cell' + item.id);
-                                noticiatablecell.classList.add('hidden');
-                            }
-                            
-                            if (response.data.inmueble.noticiastate === 1) {
-                                const encargotablecell = document.getElementById('noticia-table-cell' + item.id);
-                                encargotablecell.classList.remove('hidden');
-                            } else if (response.data.inmueble.noticiastate === 0 || response.data.inmueble.noticiastate === null) {
-                                const encargotablecell = document.getElementById('noticia-table-cell' + item.id);
-                                encargotablecell.classList.add('hidden');
-                            }
-
-                            if (response.data.dataUpdateTime === 'red') {
-                                row.classList.add('bg-red-100');
-                            } else if (response.data.dataUpdateTime === 'yellow') {
-                                row.classList.add('bg-yellow-100');
-                            } else if (response.data.dataUpdateTime === 'green') {
-                                row.classList.add('bg-green-100');
-                            }
-                            hideLoadingScreen();
-                        })
-                        .catch(error => {
-                            console.error('Error fetching data:', error);
-                        });
-
-                });
-            }
-
-
-
-
-
-            function updatePaginationInfo() {
-                pageInfo.textContent = `${currentPage} de ${totalPages}`;
-                prevButton.disabled = currentPage === 1;
-                nextButton.disabled = currentPage === totalPages;
-            }
-
-            const forminsertarcomentario = document.getElementById('form-insertar-comentario');
-            const enviarComentario = document.createElement("button");
-            enviarComentario.id = "enviar-comentario";
-            enviarComentario.classList.add("p-3", "text-sm", "text-white", "bg-green-800", "hover:bg-green-600", "rounded-md", "transition-all", "duration-[0.5s]", "ease-in-out", "hover:cursor-pointer", "mb-4");
-            enviarComentario.textContent = "Enviar";
-            forminsertarcomentario.appendChild(enviarComentario);
-
-
         });
+
+        nextButton.addEventListener('click', function() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                fetchData(direccion, currentPage);
+            }
+        });
+
+        clearForm.addEventListener('click', function() {
+            document.getElementById("search-form").reset();
+            direccion = '';
+            fetchData(direccion, currentPage);
+        });
+
+        function fetchData(direccion, page) {
+            fetch(`tabla.php?itemsPerPage=${itemsPerPage}&direccion=${direccion}&page=${page}`)
+                .then(response => response.json())
+                .then(data => {
+                    totalPages = Math.ceil(data.totalItems / itemsPerPage);
+                    displayData(data.data);
+                    updatePaginationInfo();
+                })
+                .catch(error => console.error('Error fetching JSON data:', error));
+        }
+
+        function displayData(data) {
+            // Clear existing rows
+            tableBody.innerHTML = '';
+
+            // Populate table with data
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.classList.add('border-b', 'border-zinc-300');
+                row.id = 'row-' + item.id;
+                // Create a new row element
+
+                // Function to create a td element with given classes and inner HTML
+                function createCell(classes, innerHTML) {
+                    const cell = document.createElement('td');
+                    cell.className = classes;
+                    cell.innerHTML = innerHTML;
+                    return cell;
+                }
+
+                // Append cells to the row
+                row.appendChild(createCell('text-center xl:text-start py-5 text-sm overflow-hidden w-[100%]', item.direccion));
+                row.appendChild(createCell('hidden xl:table-cell', item.tipo));
+                row.appendChild(createCell('hidden xl:table-cell', item.uso));
+                row.appendChild(createCell('hidden xl:table-cell', item.superficie));
+                row.appendChild(createCell('hidden xl:table-cell', item.ano_construccion));
+
+                // Create the cell with SVG icons
+                const svgCell = document.createElement('td');
+                svgCell.className = 'xl:table-cell';
+                const svgDiv = document.createElement('div');
+                svgDiv.className = 'flex flex-row px-1 w-full h-full gap-2 justify-start items-center';
+
+                const noticiaSvg = `<svg id="noticia-table-cell${item.id}" class="text-red-700 hidden" xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 20 20"><path fill="currentColor" d="M2.93 17.07A10 10 0 1 1 17.07 2.93A10 10 0 0 1 2.93 17.07M9 5v6h2V5zm0 8v2h2v-2z" /></svg>`;
+                const encargoSvg = `<svg id="encargo-table-cell${item.id}" class="text-red-700 hidden" xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 20 20"><path fill="currentColor" d="M2 3a1 1 0 0 1 2 0h13a1 1 0 1 1 0 2H4v12.5a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5v7a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 5 13.5zm3 7a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-2.55a1 1 0 0 0-.336-.748L11.332 8.13a.5.5 0 0 0-.664 0L8.336 10.2a1 1 0 0 0-.336.75z" /></svg>`;
+
+                svgDiv.innerHTML = noticiaSvg + encargoSvg;
+                svgCell.appendChild(svgDiv);
+                row.appendChild(svgCell);
+
+                // Create the cell with the button
+                const buttonCell = document.createElement('td');
+                buttonCell.className = 'relative';
+                const containerButtonDiv = document.createElement('div');
+                containerButtonDiv.classList = "w-auto absolute top-1/2 -translate-y-1/2 right-3 xl:table-cell";
+                const buttonDiv = document.createElement('div');
+                buttonDiv.id = item.id;
+                buttonDiv.className = 'bg-slate-500 hover:bg-slate-900 w-[2em] h-[2em] rounded-lg flex flex-col items-center justify-center hover:rounded-3xl transition-all duration-[0.5s] ease-in-out hover:w-11 hover:h-11 overflow-hidden hover:cursor-pointer';
+                buttonDiv.onclick = function() {
+                    verMasInfo(this);
+                };
+                const buttonSvg = `<svg class="p-2" id="more-info-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#63E6BE" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>`;
+                buttonDiv.innerHTML = buttonSvg;
+                containerButtonDiv.appendChild(buttonDiv);
+                buttonCell.appendChild(containerButtonDiv);
+                row.appendChild(buttonCell);
+
+
+
+                tableBody.appendChild(row);
+
+
+
+                axios.get(`inmueblemoreinfo.php?id=${item.id}`)
+                    .then(response => {
+                        const row = document.getElementById('row-' + item.id);
+
+                        if (response.data.inmueble.encargoState === 1) {
+                            const noticiatablecell = document.getElementById('encargo-table-cell' + item.id);
+                            noticiatablecell.classList.remove('hidden');
+                        } else if (response.data.inmueble.encargoState === 0 || response.data.inmueble.encargoState === null) {
+                            const noticiatablecell = document.getElementById('encargo-table-cell' + item.id);
+                            noticiatablecell.classList.add('hidden');
+                        }
+
+                        if (response.data.inmueble.noticiastate === 1) {
+                            const encargotablecell = document.getElementById('noticia-table-cell' + item.id);
+                            encargotablecell.classList.remove('hidden');
+                        } else if (response.data.inmueble.noticiastate === 0 || response.data.inmueble.noticiastate === null) {
+                            const encargotablecell = document.getElementById('noticia-table-cell' + item.id);
+                            encargotablecell.classList.add('hidden');
+                        }
+
+                        if (response.data.dataUpdateTime === 'red') {
+                            row.classList.add('bg-red-100');
+                        } else if (response.data.dataUpdateTime === 'yellow') {
+                            row.classList.add('bg-yellow-100');
+                        } else if (response.data.dataUpdateTime === 'green') {
+                            row.classList.add('bg-green-100');
+                        }
+                       
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                    });
+
+            });
+            hideLoadingScreen();
+        }
+
+        function updatePaginationInfo() {
+            pageInfo.textContent = `${currentPage} de ${totalPages}`;
+            prevButton.disabled = currentPage === 1;
+            nextButton.disabled = currentPage === totalPages;
+        }
+
+        const forminsertarcomentario = document.getElementById('form-insertar-comentario');
+        const enviarComentario = document.createElement("button");
+        enviarComentario.id = "enviar-comentario";
+        enviarComentario.classList.add("p-3", "text-sm", "text-white", "bg-green-800", "hover:bg-green-600", "rounded-md", "transition-all", "duration-[0.5s]", "ease-in-out", "hover:cursor-pointer", "mb-4");
+        enviarComentario.textContent = "Enviar";
+        forminsertarcomentario.appendChild(enviarComentario);
 
         function verMasInfo(clickedDiv) {
             const adminpower = document.getElementById('admin-power');
@@ -664,6 +656,7 @@
                                             },
                                             onClick: function() {} // Callback after click
                                         }).showToast();
+                                        fetchData('', currentPage);
                                         fetchComments();
                                     })
                                     .catch(error => console.error('Error deleting comment:', error));
@@ -758,6 +751,7 @@
                                                 onClick: function() {} // Callback after click
                                             }).showToast();
                                             // Reload comments after deletion
+                                            fetchData('', currentPage);
                                             fetchComments();
                                         })
                                         .catch(error => console.error('Error deleting comment:', error));

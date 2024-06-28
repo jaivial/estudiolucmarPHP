@@ -45,7 +45,7 @@
             </div>
 
 
-            <h1 class="font-sans text-xl font-bold text-slate-900">Encargos</h1>
+            <h1 class="font-sans text-xl font-bold text-slate-900">NOTICIAS</h1>
             <form id="search-form" class="mb-4 flex flex-row justify-center gap-5 items-center flex-wrap w-full px-4">
                 <label class="text-slate-900 text-base font-semibold" for="direccion">Introduce la dirección:</label>
                 <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5 hover:bg-slate-100" type="text" placeholder="Dirección" name="direccion">
@@ -161,7 +161,7 @@
 
 
             function fetchData(direccion, page) {
-                fetch(`tablaEncargos.php?itemsPerPage=${itemsPerPage}&direccion=${direccion}&page=${page}`)
+                fetch(`tablaNoticias.php?itemsPerPage=${itemsPerPage}&direccion=${direccion}&page=${page}`)
                     .then(response => response.json())
                     .then(data => {
                         totalPages = Math.ceil(data.totalItems / itemsPerPage);
@@ -278,17 +278,16 @@
                 pageInfo.textContent = `${currentPage} de ${totalPages}`;
                 prevButton.disabled = currentPage === 1;
                 nextButton.disabled = currentPage === totalPages;
-            }
-
-            const forminsertarcomentario = document.getElementById('form-insertar-comentario');
-            const enviarComentario = document.createElement("button");
-            enviarComentario.id = "enviar-comentario";
-            enviarComentario.classList.add("p-3", "text-sm", "text-white", "bg-green-800", "hover:bg-green-600", "rounded-md", "transition-all", "duration-[0.5s]", "ease-in-out", "hover:cursor-pointer", "mb-4");
-            enviarComentario.textContent = "Enviar";
-            forminsertarcomentario.appendChild(enviarComentario);
-
-
+            }            
         });
+
+
+        const forminsertarcomentario = document.getElementById('form-insertar-comentario');
+        const enviarComentario = document.createElement("button");
+        enviarComentario.id = "enviar-comentario";
+        enviarComentario.classList.add("p-3", "text-sm", "text-white", "bg-green-800", "hover:bg-green-600", "rounded-md", "transition-all", "duration-[0.5s]", "ease-in-out", "hover:cursor-pointer", "mb-4");
+        enviarComentario.textContent = "Enviar";
+        forminsertarcomentario.appendChild(enviarComentario);
 
         function verMasInfo(clickedDiv) {
             const adminpower = document.getElementById('admin-power');
@@ -639,7 +638,6 @@
                                     },
                                     onClick: function() {} // Callback after click
                                 }).showToast();
-                                
                                 fetchComments();
                             } else {
                                 fetch(`insertarcomentario.php?id=${insertarID}&comentario=${comentarioValue}`)
@@ -665,7 +663,6 @@
                                             },
                                             onClick: function() {} // Callback after click
                                         }).showToast();
-                                        fetchData(direccion, currentPage);
                                         fetchComments();
                                     })
                                     .catch(error => console.error('Error deleting comment:', error));
