@@ -1,0 +1,47 @@
+<?php
+header('Content-Type: application/json');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once 'db_Connection/db_Connection.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['nombre'], $_GET['apellido'], $_GET['email'], $_GET['password'], $_GET['admin'])) {
+    $nombre = $_GET['nombre'];
+    $apellido = $_GET['apellido'];
+    $email = $_GET['email'];
+    $password = $_GET['password'];
+    $admin = $_GET['admin'];
+
+    // Check if the cookie exists and is set
+    if (!isset($_COOKIE['id'])) {
+        echo json_encode(array("error" => "No user ID found in the cookie"));
+        exit;
+    }
+    $id = (int)$_COOKIE['id'];
+
+    // Prepare and bind
+    $stmt = $conn->prepare("UPDATE users SET nombre = ?, apellido = ?, email = ?, password = ?, admin = ? WHERE id = ?");
+    if ($stmt === false) {
+        echo json_encode(array("success" => false, "message" => "Prepare failed: " . $conn->error));
+        exit;
+    }
+
+    $stmt->bind_param("ssssii", $nombre, $apellido, $email, $password, $admin, $id);
+
+    if ($stmt->execute()) {
+        if ($stmt->affected_rows > 0) {
+            echo json_encode(array("success" => true, "message" => "Registro actualizado correctamente"));
+        } else {
+            echo json_encode(array("success" => false, "message" => "No records updated"));
+        }
+    } else {
+        echo json_encode(array("success" => false, "message" => "Error actualizando registro: " . $stmt->error));
+    }
+
+    $stmt->close();
+} else {
+    echo json_encode(array("success" => false, "message" => "Solicitud inválida"));
+}
+
+$conn->close();
