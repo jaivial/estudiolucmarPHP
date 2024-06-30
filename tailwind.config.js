@@ -1,8 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["**/*.{html,js,php}"],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
+  content: ["./src/**/*.{php,html}"],
+   theme: {
+     extend: {},
+},
+   plugins: [],
 }
+
+// npx tailwindcss -i input.css -o output.css --watch
